@@ -342,7 +342,7 @@ button {
 ========================================================= */
 
 .hero-text h1 {
-  font-size: 4.5rem;
+  font-size: 12pxrem;
   line-height: 1.1;
 
   color: var(--dark);
@@ -382,55 +382,55 @@ button {
 
 .hero-image {
   position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: visible;
+  isolation: isolate;
 }
 
 /* FLOATING NAME */
-
 .floating-name {
   position: absolute;
 
-  padding: 14px 22px;
+  padding: 8px 14px; /* lebih kecil lagi */
+  border-radius: 14px;
 
-  border-radius: 20px;
-
-  background: rgba(255, 255, 255, 0.7);
-
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
 
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.08),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-
-  animation: floatingName 4s ease-in-out infinite;
+    0 8px 18px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35);
 
   z-index: 5;
+
+  /* 🔥 IMPORTANT STABILITY FIX */
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  animation: floatingName 6s ease-in-out infinite;
 }
 
 .floating-name span {
-  font-size: 1rem;
+  font-size: 10px;
   font-weight: 600;
-
   color: #5b4636;
+  white-space: nowrap;
 }
 
 /* COWOK */
 
 .male-name {
   top: 12%;
-  left: -40px;
+  left: -25px; /* lebih dekat */
 }
-
-/* CEWEK */
 
 .female-name {
   bottom: 10%;
-  right: -40px;
-
-  animation-delay: 2s;
+  right: -25px;
 }
 
 /* SMALL HEART */
@@ -462,18 +462,17 @@ button {
 }
 
 /* FLOAT ANIMATION */
-
 @keyframes floatingName {
   0% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0px, 0);
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -4px, 0);
   }
 
   100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0px, 0);
   }
 }
 
@@ -1051,12 +1050,9 @@ footer p {
 .card,
 .gallery-item,
 .timeline-item,
-.hero-text,
-.hero-image {
+.hero-text {
   opacity: 0;
-
   transform: translateY(40px);
-
   transition:
     opacity 0.8s ease,
     transform 0.8s ease;
@@ -1065,8 +1061,7 @@ footer p {
 .card.show,
 .gallery-item.show,
 .timeline-item.show,
-.hero-text.show,
-.hero-image.show {
+.hero-text.show {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1455,7 +1450,7 @@ footer p {
 
 @media (max-width: 500px) {
   .hero-text h1 {
-    font-size: 2.4rem;
+    font-size: 2.1rem;
   }
 
   .hero-text p {
